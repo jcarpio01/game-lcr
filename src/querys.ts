@@ -3,7 +3,7 @@ import {pool} from "./database";
 // games table
 export async function createGamesTableIfNotExists() {
     const client = await pool.connect();
-
+// create table in Postgress
     try {
         await client.query(`
         CREATE TABLE IF NOT EXISTS games (
@@ -30,7 +30,7 @@ export async function createGameEntity(playerChips: number[], centerChips: numbe
         };
         await client.query(query);
     } catch (error) {
-        console.error('Error creating game entity', error);
+        console.error('Error creating entity', error);
     } finally {
         client.release();
     }

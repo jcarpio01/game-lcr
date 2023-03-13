@@ -10,7 +10,7 @@ export default function LCR(numPlayers: number, rolls: string): object {
     // message
     const message = {};
 
-    // loop through the rolls and simulate the game
+
     while (offset < rolls.length) {
         const numDice = Math.min(chips[currentPlayer], 3); // limit number of dice rolled by number of chips
         const turnRolls = rolls.slice(offset, offset + numDice)
