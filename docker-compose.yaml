@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    container_name: lcr-db
+    volumes:
+      - ./postgres:/var/lib/postgresql/dat
+
+  app:
+    build: .
+    restart: always
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    container_name: lcr-app
+    volumes:
+      - .:/app
